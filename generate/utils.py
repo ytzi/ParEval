@@ -480,6 +480,8 @@ def get_inference_config(model_name : str, **kwargs) -> InferenceConfig:
         return InstructConfig(instruction_tag='### Instruction', response_tag='### Response', **kwargs)
     elif model_name.startswith('Qwen/Qwen2.5') and 'Instruct' in model_name:
         return ChatMLConfig(**kwargs)
+    elif model_name.startswith('Qwen/Qwen3'):
+        return ChatMLConfig(**kwargs)
     elif model_name.startswith('Qwen/Qwen2.5'):
         return QwenConfig(**kwargs)
     else:
