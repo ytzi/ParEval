@@ -78,10 +78,6 @@ void fftCooleyTookey(std::vector<std::complex<double>>& x) {
         x[k+N/2] = even[k] - t;
     }
 
-	// conjugate
-	for (size_t i = 0; i < x.size(); i += 1) {
-		x[i] = std::conj(x[i]);
-	}
 }
 
 #if defined(USE_CUDA)

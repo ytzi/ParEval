@@ -76,6 +76,9 @@ bool validate(Context *ctx) {
         // compute correct result
         std::vector<std::complex<double>> correct = x;
         fftCooleyTookey(correct);
+        for (size_t i = 0; i < correct.size(); i += 1) {
+            correct[i] = std::conj(correct[i]);
+        }
 
         // compute test result
         std::vector<std::complex<double>> test = x;
@@ -87,6 +90,7 @@ bool validate(Context *ctx) {
             for (int k = 0; k < TEST_SIZE; k += 1) {
                 if (std::abs(correct[k].real() - test[k].real()) > 1e-3 || std::abs(correct[k].imag() - test[k].imag()) > 1e-3) {
                     isCorrect = false;
+                    std::cout << "k: " << k << " correct: " << correct[k] << " test: " << test[k] << std::endl;
                     break;
                 }
             }
